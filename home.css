@@ -236,7 +236,7 @@ body {
     overflow-x: auto;
     display: flex;
     flex-direction: row;
-    gap: 128px;
+    gap: 64px;
     padding: 16px 5% 16px 5%;
 }
 
@@ -250,7 +250,7 @@ body {
 .stat-card {
     background-color: var(--stat-card-bg-1);
     height: 70vh;
-    aspect-ratio: 1 / 1;
+    width: 100%;
     padding: 64px 32px;
     border-radius: 8px;
     display: flex;
