@@ -36,6 +36,7 @@ body {
     position: sticky;
     top: 0;
     box-shadow: hsla(0, 0, 0, 0.5) 0px 2px 4px;
+    z-index: 1;
 }
 
 .top-nav-left {
@@ -224,6 +225,25 @@ body {
     padding: 128px 5% 16px 5%;
 }
 
+
+.container-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.left-button,
+.right-button {
+    height: 32px;
+    width: 32px;
+    background-color: var(--stat-card-bg-2);
+    color: white;
+    border-radius: 16px;
+    outline: none;
+    border: none;
+}
+
 .stats-title,
 .mobile-projects-title,
 .web-projects-title {
@@ -231,72 +251,100 @@ body {
 }
 
 .stats-container,
-.mobile-projects-container,
-.web-projects-container {
-    overflow-x: auto;
+.projects-container {
+    overflow-x: hidden;
     display: flex;
     flex-direction: row;
     gap: 64px;
     padding: 16px 5% 16px 5%;
+    scroll-behavior: smooth;
+    /* background-color: var(--primary-color); */
 }
 
-.mobile-project-card,
-.web-project-card {
+.project-card {
     background-color: violet;
     height: 70vh;
     aspect-ratio: 2 / 1;
 }
 
+.projects {
+    overflow: hidden;
+}
+
+.projects-container {
+    opacity: 0;
+    transform: translateX(200px);
+    transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+.projects-container.reveal {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+
 .stat-card {
     background-color: var(--stat-card-bg-1);
     height: 70vh;
     width: 100%;
-    padding: 64px 32px;
+    padding: 32px 32px 64px 32px;
+    box-shadow: 0cap 8px 18px hsla(0, 0%, 0%, 0.2);
     border-radius: 8px;
+}
+
+.card-title {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.languages {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    
+    height: 100%;
+    padding: 32px 0px;
 }
 
-.stat-card .language {
+.languages .language {
     display: flex;
     gap: 16px;
     align-items: center;
 }
 
-.stat-card .language-info {
+.languages .language-info {
     display: flex;
     align-items: center;
     width: 25%;
 }
 
-.stat-card .language .ic-color {
+.languages .language .ic-color {
     width: 32px;
     height: 32px;
     border-radius: 50%;
     margin-right: 8px;
+    aspect-ratio: 1 / 1;
 }
 
-.stat-card .language span {
+.languages .language span {
     font-size: 1.2em;
     font-weight: 400;
 }
 
 
-.stat-card .language .stat-bar {
+.languages .language .stat-bar {
     display: flex;
     gap: 16px;
     align-items: center;
     width: 100%;
 }
 
- .stat-bar .stat-progress {
+.stat-bar .stat-progress {
     height: 32px;
     border-radius: 4px 16px 16px 4px;
 }
 
-.stat-card .language .stat-bar span {
+.languages .language .stat-bar span {
     font-size: 1.2em;
     font-weight: 400;
 }
@@ -304,48 +352,121 @@ body {
 
 /* Java (first .language block) */
 .language:nth-of-type(1) .ic-color {
-    background-color: #007396; /* Java blue */
+    background-color: #007396;
 }
+
 .language:nth-of-type(1) .stat-progress {
     background-color: #007396;
 }
 
 /* HTML (second .language block) */
 .language:nth-of-type(2) .ic-color {
-    background-color: #f34f29; /* HTML orange */
+    background-color: #f34f29;
 }
+
 .language:nth-of-type(2) .stat-progress {
     background-color: #f34f29;
 }
 
 /* CSS (third .language block) */
 .language:nth-of-type(3) .ic-color {
-    background-color: #519aba; /* HTML orange */
+    background-color: #519aba;
 }
+
 .language:nth-of-type(3) .stat-progress {
     background-color: #519aba;
 }
 
 /* Javascript (fourth .language block) */
 .language:nth-of-type(4) .ic-color {
-    background-color: #F0DB4F; /* HTML orange */
+    background-color: #F0DB4F;
 }
+
 .language:nth-of-type(4) .stat-progress {
     background-color: #F0DB4F;
 }
 
 /* PHP (fifth .language block) */
 .language:nth-of-type(5) .ic-color {
-    background-color: #777bb3; /* HTML orange */
+    background-color: #777bb3;
 }
+
 .language:nth-of-type(5) .stat-progress {
     background-color: #777bb3;
 }
 
 /* Python (sixth .language block) */
 .language:nth-of-type(6) .ic-color {
-    background-color: #fed851; /* HTML orange */
+    background-color: #fed851;
 }
+
 .language:nth-of-type(6) .stat-progress {
     background-color: #fed851;
+}
+
+/* Progress Bar Animations */
+.bar {
+    width: 0%;
+    translate: -50% 0;
+    transition: all 1s ease-out;
+}
+
+.bar.animate {
+    width: var(--target-width);
+    /* Or set via inline style */
+    filter: none;
+    translate: 0 0;
+}
+
+
+.chart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    gap: 32px;
+    padding: 16px;
+    position: relative;
+}
+
+.chart-container .pie-chart {
+    width: calc(100% / 2);
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background: conic-gradient();
+}
+
+.chart-container .list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.chart-container .list .list-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 8px 16px;
+}
+
+.chart-container .list .list-item .ic-color {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-right: 8px;
+    aspect-ratio: 1 / 1;
+}
+
+.chart-container .list .list-item:nth-of-type(1) .ic-color {
+    background-color: #f53003;
+}
+
+.chart-container .list .list-item .value {
+    position: absolute;
+    right: 16px;
+    font-size: 1.2em;
+    font-weight: 400;
 }
