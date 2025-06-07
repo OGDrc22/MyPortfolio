@@ -14,20 +14,21 @@
 <body>
     <div class="container top-nav">
         <div class="top-nav-left">
-            <a href="index.html">Home</a>
+            <a href="#home">Home</a>
         </div>
         <div class="top-nav-center">
-            <a href="about.html">Android</a>
-            <a href="contact.html">Website</a>
+            <a href="#android">Android</a>
+            <a href="#web">Website</a>
+            <a href="#stats">Stats</a>
         </div>
         <div class="top-nav-right">
-            <a href="login.html">Contacts</a>
+            <a href="#links">Contacts</a>
         </div>
     </div>
 
     <div class="container-main">
 
-        <div class="container-home">
+        <div class="container-home" id="home">
 
             <div class="left">
 
@@ -56,34 +57,7 @@
 
         </div>
 
-
-        <div class="web-projects projects">
-
-            <h1 class="web-projects-title">Web Projects</h1>
-            <div class="projects-container">
-
-                <div class="project-card">
-                    <img src="project1.png" alt="Project 1">
-                </div>
-
-                <div class="project-card">
-                    <img src="project2.png" alt="Project 2">
-                </div>
-
-                <div class="project-card">
-                    <img src="project3.png" alt="Project 3">
-                </div>
-
-            </div>
-
-            <div class="container-button">
-                <button class="left-button" id="left-button"><i class="fa-solid fa-angle-left"></i></button>
-                <button class="right-button"><i class="fa-solid fa-angle-right"></i></button>
-            </div>
-
-        </div>
-
-        <div class="mobile-projects projects">
+        <div class="mobile-projects projects" id="android">
 
             <h1 class="mobile-projects-title">Mobile Application</h1>
             <div class="projects-container">
@@ -109,7 +83,33 @@
 
         </div>
 
-        <div class="stats">
+        <div class="web-projects projects" id="web">
+
+            <h1 class="web-projects-title">Web Projects</h1>
+            <div class="projects-container">
+
+                <div class="project-card">
+                    <img src="project1.png" alt="Project 1">
+                </div>
+
+                <div class="project-card">
+                    <img src="project2.png" alt="Project 2">
+                </div>
+
+                <div class="project-card">
+                    <img src="project3.png" alt="Project 3">
+                </div>
+
+            </div>
+
+            <div class="container-button">
+                <button class="left-button" id="left-button"><i class="fa-solid fa-angle-left"></i></button>
+                <button class="right-button"><i class="fa-solid fa-angle-right"></i></button>
+            </div>
+
+        </div>
+
+        <div class="stats" id="stats">
 
             <h1 class="stats-title">Proficiency</h1>
             <div class="stats-container">
@@ -222,6 +222,30 @@
 
                     </div>
 
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="contacts-container" id="links">
+
+            <h1 class="web-projects-title">Contacts</h1>
+            <div class="contacts-container-grid">
+
+                <div class="card-link">
+                    <div class="icon-container"><img src="gmail.png" alt="Project 1"></div>
+                    <a class="link-name" href="dennieschavez.09@gmail.com">dennieschavez.09@gmail.com</a>
+                </div>
+
+                <div class="card-link">
+                    <div class="icon-container"><img src="github.png" alt="Project 2"></div>
+                    <a class="link-name" href="https://github.com/OGDrc22">OGDrc22</a>
+                </div>
+
+                <div class="card-link">
+                    <div class="icon-container"><img src="linkedin.png" alt="Project 3"></div>
+                    <a class="link-name" href="https://www.linkedin.com/in/dennies-chavez-29280532a/">dennies chavez</a>
                 </div>
 
             </div>

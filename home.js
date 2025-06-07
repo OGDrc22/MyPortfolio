@@ -72,7 +72,7 @@ const observerChart = new IntersectionObserver(entries => {
 
                 pieChart.style.background = `conic-gradient(${segments.join(', ')})`;
                 current++;
-            }, 10);
+            }, 15);
         } else {
             // Reset chart visually
             pieChart.style.background = `conic-gradient(${stats.map(s => `transparent 0% 0%`).join(', ')}, transparent 0% 100%)`;
