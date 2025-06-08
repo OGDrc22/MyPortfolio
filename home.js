@@ -1,5 +1,34 @@
+const fadeUp = document.querySelectorAll('.fadeUp');
+window.addEventListener('load', () => {
+    fadeUp.forEach((el, index) => {
+        setTimeout(() => {
+            el.classList.remove('hidden');
+            el.classList.add('show');
+        }, index * 100); // Stagger the animation by 100ms for each element
+    });
+})
 
-// Example dynamic data
+// Intersection Observer for Fade Up Animation
+const observerFadeUp = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+        setTimeout(() => {
+            if (entry.isIntersecting) {
+                entry.target.classList.remove('hidden');
+                entry.target.classList.add('show');
+            } else {
+                entry.target.classList.remove('show');
+                entry.target.classList.add('hidden');
+            }
+        }, index * 100); // Stagger the animation by 100ms for each element
+    });
+}, {
+    threshold: 1, // Trigger when 100% of the element is visible
+});
+fadeUp.forEach(el => {observerFadeUp.observe(el);});
+
+
+
+// Pie Chart Animation
 const stats = [
     { name: "Laravel", value: 70, color: "#f53003" }
 ];
@@ -25,7 +54,8 @@ pieChart.style.background = `conic-gradient(
 )`;
 
 
-// Populate list items
+
+// Populate list items Pie Chart
 listContainer.innerHTML = ''; 
 stats.forEach(stat => {
     const item = document.createElement('div');
@@ -39,7 +69,6 @@ stats.forEach(stat => {
 
     listContainer.appendChild(item);
 });
-
 
 const observerChart = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -81,10 +110,11 @@ const observerChart = new IntersectionObserver(entries => {
 }, { threshold: 0.5 });
 
 observerChart.observe(pieChart);
+// End of Pie Chart Animation
 
 
 
-
+// Bar Chart Animation
 const bars = document.querySelectorAll('.bar');
 
 const observer = new IntersectionObserver(entries => {
@@ -100,56 +130,36 @@ const observer = new IntersectionObserver(entries => {
 });
 
 bars.forEach(bar => observer.observe(bar));
-
-
-const widthCard = document.querySelector('.project-card').offsetWidth;
-
+// End of Bar Chart Animation
 
 document.addEventListener('click', function (e) {
-    const button = e.target.closest('.left-button');
+    const button = e.target.closest('.scroll-button');
     if (!button) return;
-    
-    
-    const project = button.closest('.projects');
-    if (!project) return;
 
+    const module = button.closest('.hScrollModule');
+    if (!module) return;
 
-    let projectContainers;
+    const moduleContainers = module.querySelector('.hScroll-container');
+    if (!moduleContainers) return;
 
-    if (project.classList.contains('web-projects')) {
-        console.log('Button in Web Projects section' + widthCard);
-        projectContainers = project.querySelector('.projects-container');
-        projectContainers.scrollLeft -= widthCard;
-    } else if (project.classList.contains('mobile-projects')) {
-        console.log('Button in Mobile Projects section');
-        projectContainers = project.querySelector('.projects-container');
-        projectContainers.scrollLeft -= widthCard;
+    const card = moduleContainers.querySelector('.card'); // or .querySelectorAll() if multiple
+    if (!card) return;
+
+    const widthCard = card.offsetWidth;
+    if (button.classList.contains('left-button')) {
+        moduleContainers.scrollLeft -= widthCard;
+    } else if (button.classList.contains('right-button')) {
+        moduleContainers.scrollLeft += widthCard;
     }
-})
+});
 
 
-document.addEventListener('click', function (e) {
-    const button = e.target.closest('.right-button');
-    if (!button) return;
-    
-    const project = button.closest('.projects');
-    if (!project) return;
 
-    let projectContainers;
-
-    if (project.classList.contains('web-projects')) {
-        console.log('Button in Web Projects section');
-        projectContainers = project.querySelector('.projects-container');
-        projectContainers.scrollLeft += widthCard;
-    } else if (project.classList.contains('mobile-projects')) {
-        console.log('Button in Mobile Projects section');
-        projectContainers = project.querySelector('.projects-container');
-        projectContainers.scrollLeft += widthCard;
-    }
-})
 
 const cards = document.querySelectorAll('.projects-container');
+// Intersection Observer for Project Cards
 
+// Card reveal animation when they come into view
 const observerCard = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -160,8 +170,25 @@ const observerCard = new IntersectionObserver((entries) => {
   });
 }, {
   threshold: 0.2, // Reveal when 20% of card is visible
-  rootMargin: '0px'
 });
 
 cards.forEach(card => observerCard.observe(card));
+// End of Intersection Observer for Project Cards
 
+
+const card_link = document.querySelectorAll('.card-link');
+const observerLink = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+        } else {
+            entry.target.classList.remove('show');
+        }
+    });
+}, {
+    threshold: 0.9, // Trigger when 50% of the element is visible
+});
+
+card_link.forEach(link => {
+    observerLink.observe(link);
+});

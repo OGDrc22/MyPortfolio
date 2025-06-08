@@ -130,7 +130,7 @@ body {
 .container-home {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    padding: 16px 6px 16px 6px;
+    padding: 64px 6px 16px 6px;
     height: 90vh;
 }
 
@@ -146,6 +146,8 @@ body {
 
 .details {
     margin: auto;
+    margin-right: 0px;
+    width: 30vw;
 }
 
 
@@ -164,6 +166,21 @@ body {
     font-weight: 400;
 }
 
+/* Initial hidden state */
+.fadeUp {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Final visible state */
+.fadeUp.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
 .container-home .right {
     padding: 16px;
     /* background-color: var(--secondary-light); */
@@ -179,8 +196,8 @@ body {
 .parent1 {
     position: absolute;
     margin-top: 18px;
-    width: 60%;
-    height: 60vh;
+    height: 60%;
+    aspect-ratio: 1 / 1;
     background: transparent;
     overflow: hidden;
 }
@@ -196,8 +213,8 @@ body {
 .parent2 {
     position: absolute;
     margin-top: 18px;
-    width: 60%;
-    height: 60vh;
+    height: 60%;
+    aspect-ratio: 1 / 1;
     background: transparent;
     overflow: hidden
 }
@@ -213,7 +230,7 @@ body {
 
 .parent3 {
     position: absolute;
-    width: 50%;
+    height: 50%;
     aspect-ratio: 1 / 1;
     background: transparent;
     overflow: hidden
@@ -230,14 +247,25 @@ body {
 
 
 
-.stats,
-.mobile-projects,
-.web-projects {
+.hScrollModule {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    padding: 128px 5% 16px 5%;
+    padding: 102px 5% 16px 5%;
 }
+
+/* .projects-sets {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    width: 100%;
+}
+
+.hidden-set {
+    display: none;
+} */
 
 
 .container-button {
@@ -245,6 +273,7 @@ body {
     justify-content: center;
     align-items: center;
     gap: 16px;
+    margin-top: 16px;
 }
 
 .left-button,
@@ -275,13 +304,36 @@ body {
     /* background-color: var(--primary-color); */
 }
 
+/* Base styles */
 .project-card {
+    border-radius: 16px;
+    overflow: hidden;
+    flex: 0 0 auto; /* Prevent shrinking in flex container */
     background-color: violet;
-    height: 70vh;
-    aspect-ratio: 2 / 1;
 }
 
-.projects {
+/* MOBILE: 720x1600 (portrait) aspect ratio */
+.mobile-projects .project-card {
+    aspect-ratio: 9 / 20; /* Roughly 720 / 1600 */
+    height: 70vh; /* Height-controlled; width will follow from aspect-ratio */
+}
+
+/* WEB: 1920x1080 (landscape) aspect ratio */
+.web-projects .project-card {
+    aspect-ratio: 16 / 9;
+    height: 70vh;
+}
+
+/* Image fills the card */
+.project-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+    display: block;
+}
+
+.hScrollModule {
     overflow: hidden;
 }
 
@@ -301,7 +353,7 @@ body {
 .stat-card {
     background-color: var(--stat-card-bg-1);
     height: 70vh;
-    width: 100%;
+    aspect-ratio: 1 / 1;
     padding: 32px 32px 64px 32px;
     box-shadow: 0cap 8px 18px hsla(0, 0%, 0%, 0.2);
     border-radius: 8px;
@@ -523,5 +575,47 @@ body {
 .card-link .icon-container img {
     width: 128px;
     height: 128px;
-    --webkit-mas
+}
+
+.card-link,
+.card-link .link-name {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.card-link:hover {
+    scale: 1.05;
+    box-shadow: 0px 4px 12px hsla(0, 0%, 0%, 0.2);
+    transition: ease-out 0.2s;
+}
+
+.card-link .link-name:hover {
+    color: var(--primary-color);
+}
+
+.fadeScaledMovedId {
+    opacity: 0;
+    animation: none;
+}
+
+.fadeScaledMovedId.show {
+    opacity: 1;
+    animation: bounceInUp 0.6s ease-out forwards;
+}
+
+@keyframes bounceInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(-300px) scale(0.2);
+    }
+    60% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    80% {
+        transform: scale(0.98);
+    }
+    100% {
+        transform: translateY(0) scale(1);
+    }
 }
