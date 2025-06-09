@@ -254,19 +254,6 @@ body {
     padding: 102px 5% 16px 5%;
 }
 
-/* .projects-sets {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 32px;
-    width: 100%;
-}
-
-.hidden-set {
-    display: none;
-} */
-
 
 .container-button {
     display: flex;
