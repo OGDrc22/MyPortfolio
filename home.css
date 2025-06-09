@@ -288,8 +288,15 @@ body {
     gap: 64px;
     padding: 16px 5% 16px 5%;
     scroll-behavior: smooth;
+    position: relative;
     /* background-color: var(--primary-color); */
 }
+
+.aspect-ratio-box {
+    width: 100%;
+    position: relative;
+}
+
 
 /* Base styles */
 .project-card {
@@ -299,16 +306,30 @@ body {
     background-color: violet;
 }
 
+
 /* MOBILE: 720x1600 (portrait) aspect ratio */
 .mobile-projects .project-card {
     aspect-ratio: 9 / 20; /* Roughly 720 / 1600 */
     height: 70vh; /* Height-controlled; width will follow from aspect-ratio */
 }
 
+/* Mobile fallback: 9 / 20 => 45% */
+.mobile-projects .aspect-ratio-box {
+    padding-top: 222.222%; /* 1600 / 720 * 100 */
+    /* padding-top: 177.78%; */
+}
+
+
+
 /* WEB: 1920x1080 (landscape) aspect ratio */
 .web-projects .project-card {
     aspect-ratio: 16 / 9;
     height: 70vh;
+}
+
+/* Web fallback: 16 / 9 => 56.25% */
+.web-projects .aspect-ratio-box {
+    padding-top: 56.25%; /* 9 / 16 * 100 */
 }
 
 /* Image fills the card */
@@ -319,6 +340,17 @@ body {
     border-radius: 16px;
     display: block;
 }
+
+/* Actual image or content inside */
+.aspect-ratio-box img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 
 .hScrollModule {
     overflow: hidden;
