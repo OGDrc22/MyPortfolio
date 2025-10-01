@@ -142,14 +142,19 @@ document.addEventListener('click', function (e) {
     const moduleContainers = module.querySelector('.hScroll-container');
     if (!moduleContainers) return;
 
-    const card = moduleContainers.querySelector('.card'); // or .querySelectorAll() if multiple
+    const card = moduleContainers.querySelector('.card');
     if (!card) return;
 
-    const widthCard = card.offsetWidth;
+    const projectsContainer = document.querySelector('.projects-container');
+    const projectsContainerStyles = window.getComputedStyle(projectsContainer);
+    const cardGap = parseInt(projectsContainerStyles.gap);
+    const widthCard = card.offsetWidth + cardGap;
     if (button.classList.contains('left-button')) {
         moduleContainers.scrollLeft -= widthCard;
+        console.log(widthCard);
     } else if (button.classList.contains('right-button')) {
         moduleContainers.scrollLeft += widthCard;
+        console.log(widthCard);
     }
 });
 
@@ -192,3 +197,153 @@ const observerLink = new IntersectionObserver((entries) => {
 card_link.forEach(link => {
     observerLink.observe(link);
 });
+
+
+const observerGroup = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+        } else {
+            entry.target.classList.remove('show');
+        }
+    });
+}, {
+    threshold: 0.9, // Trigger when 50% of the element is visible
+});
+
+
+
+
+
+
+
+var modal = document.getElementById("myModal");
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById("myImg");
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+
+// var projectContainers = document.querySelectorAll('.project-container');
+// projectContainers.forEach(container => {
+//     container.onclick = function() {
+//         console.log("clicked " + img.alt);
+//         modal.style.display = "block";
+//         document.querySelector(".container-body").classList.add("no-scroll");
+//         fetchImage();
+//         console.log("2nd clicked " + img.alt);
+//     }
+// });
+
+document.querySelectorAll(".projects-container").forEach(container => {
+    container.addEventListener("click", function(e) {
+    if (e.target.tagName === "IMG") {
+        // Find the closest project group
+        const project = e.target.closest(".project-group");
+
+        const title = project ? project.querySelector(".project-title") : null;
+        const modalTitle = document.querySelector(".modal-project-title");
+
+        // Show modal
+        modal.style.display = "block";
+        document.querySelector(".container-body").classList.add("no-scroll");
+
+        clearImages(); // Clear previous images
+
+        // Set modal content
+        modalTitle.textContent = title ? title.textContent : "Project";
+        var folderpath = project.dataset.path;
+        fetchImage(folderpath);
+
+        console.log("clicked " + e.target.alt);
+    }
+});
+
+var span = document.getElementsByClassName("close")[0];
+
+span.onclick = function() { 
+  modal.style.display = "none";
+  document.querySelector(".container-body").classList.remove("no-scroll");
+}
+
+document.addEventListener("keydown", function (e) {
+
+    if (e.key === "Escape") {
+        modal.style.display = "none";
+        document.querySelector(".container-body").classList.remove("no-scroll");
+    }
+});
+
+
+
+async function fetchImage(path) {
+    try {
+        let images = [];
+        if (path.includes("mobile")) {
+            images = ["a.png", "b.png", "c.png", "d.png", "e.png", "f.png", "g.png"];
+        } else if (path.includes("web")) {
+            images = ["a.png", "b.png", "c.png", "d.png", "e.png", "f.png", "g.png", "h.png", "i.png"];
+        }
+
+        const container = document.getElementById('projects-container-showcase');
+
+
+        images.forEach((image, index) => {
+            if (path.includes("mobile")) {
+                const projectCard = document.createElement("div");
+                projectCard.className = "project-card card";
+
+                const phoneDiv = document.createElement("div");
+                phoneDiv.className = "phone";
+
+                // Create aspect-ratio-box div
+                const aspectBox = document.createElement("div");
+                aspectBox.className = "aspect-ratio-box";
+
+                // Create img
+                const img = document.createElement("img");
+                img.src = `${path}/${image}`;
+                img.alt = `Project ${index + 1}`;
+                // Nest structure
+                aspectBox.appendChild(img);
+                phoneDiv.appendChild(aspectBox);
+                projectCard.appendChild(phoneDiv);
+
+                // Append to container
+                container.appendChild(projectCard);
+            } else if (path.includes("web")) {
+                const projectCard = document.createElement("div");
+                projectCard.className = "project-cards-expanded card";
+
+                const webDiv = document.createElement("div");
+                webDiv.className = "web-expanded";
+
+                const desktopDiv = document.createElement("div");
+                desktopDiv.className = "aspect-ratio-box";
+
+                const img = document.createElement("img");
+                img.src = `${path}/${image}`;
+                img.alt = `Project ${index + 1}`;
+
+                desktopDiv.appendChild(img);
+                projectCard.appendChild(desktopDiv);
+                webDiv.appendChild(projectCard);
+
+                container.appendChild(webDiv);
+            }
+        });
+
+    } catch (error) {
+        console.error('Error fetching images:', error);
+    }
+}
+})
+fetchImage();
+
+function clearImages() {
+    const container = document.getElementById('projects-container-showcase');
+    var img = container.getElementsByTagName('img');
+    if (img.src !== null) {
+        container.innerHTML = ''; // Clear all content
+    }
+}
