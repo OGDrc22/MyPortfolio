@@ -15,6 +15,8 @@
 
     --stat-card-bg-1: #EEEEEE;
     --stat-card-bg-2: #C5D5E8;
+
+    --mockup-bg: hsl(0, 0%, 10%);
 }
 
 html {
@@ -40,7 +42,7 @@ body {
     padding: 16px;
     position: sticky;
     top: 0;
-    box-shadow: hsla(0, 0, 0, 0.5) 0px 2px 4px;
+    box-shadow: 0px 2px 4px hsla(0, 0, 0, 0.5);
     z-index: 1;
 }
 
@@ -168,15 +170,15 @@ body {
 
 /* Initial hidden state */
 .fadeUp {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
 /* Final visible state */
 .fadeUp.show {
-  opacity: 1;
-  transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
 }
 
 
@@ -300,28 +302,177 @@ body {
 
 /* Base styles */
 .project-card {
-    border-radius: 16px;
-    overflow: hidden;
-    flex: 0 0 auto; /* Prevent shrinking in flex container */
-    background-color: violet;
+    border-radius: 24px;
+    /* overflow: hidden; */
+    flex: 0 0 auto;
+    /* Prevent shrinking in flex container */
+    /* background-color: violet; */
+    padding-left: 4px;
+    position: relative;
+}
+
+/* .mobile-projects {
+    background-color: var(--secondary-light);
+} */
+.phone,
+.projects-content .phone,
+.mobile-projects .phone {
+    aspect-ratio: 9 / 20;
+    height: 70vh;
+    background-color: var(--mockup-bg);
+    padding-top: 12px;
+    padding-left: 6px;
+    padding-right: 6px;
+    border-radius: 24px;
+}
+
+.project-card .buttons:nth-child(2) {
+    background-color: var(--mockup-bg);
+    /* background-color: #F0DB4F; */
+    position: absolute;
+    top: 20%;
+    left: 0%;
+    border-radius: 4px 0px 0px 4px;
+    width: 4px;
+    height: 72px;
+}
+
+.project-card .buttons:nth-child(3) {
+    background-color: var(--mockup-bg);
+    /* background-color: #F0DB4F; */
+    position: absolute;
+    top: calc(20% + 72px + 16px);
+    left: 0%;
+    border-radius: 4px 0px 0px 4px;
+    width: 4px;
+    height: 48px;
 }
 
 
 /* MOBILE: 720x1600 (portrait) aspect ratio */
 .mobile-projects .project-card {
-    aspect-ratio: 9 / 20; /* Roughly 720 / 1600 */
-    height: 70vh; /* Height-controlled; width will follow from aspect-ratio */
+    aspect-ratio: 9 / 20;
+    /* Roughly 720 / 1600 */
+    height: 70vh;
+    /* Height-controlled; width will follow from aspect-ratio */
 }
 
 /* Mobile fallback: 9 / 20 => 45% */
 .mobile-projects .aspect-ratio-box {
-    padding-top: 222.222%; /* 1600 / 720 * 100 */
+    padding-top: 222.222%;
+    /* 1600 / 720 * 100 */
     /* padding-top: 177.78%; */
+    background-color: whitesmoke;
+    border-radius: 16px;
+}
+
+
+.project-group {
+  background-color: lightgreen;
+  height: 70vh;
+  display: flex;
+  justify-content: center;        /* ✅ Center contents horizontally */
+  align-items: center;            /* ✅ Center contents vertically */
+  padding: 0 32px 32px;
+  width: 100%;             /* ✅ Auto-expand to fit children */
+}
+
+.project-cards {
+  display: flex;
+  gap: 16px;
+  transition: width 0.4s ease;
+  background-color: violet;
+}
+
+
+.project-cards {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rebeccapurple;
+    width: 100px;
+    height: 100px;
+    flex-direction: row;
+    gap: 16px;
+}
+
+.flyer {
+    position: absolute;
+}
+
+.flyer-flex {
+    position: relative;
+    gap: 16px;
+    height: 320px;
+    aspect-ratio: 9 / 20;
+    /* Roughly 720 / 1600 */
+    background-color: var(--mockup-bg);
+    border-radius: 16px;
+}
+
+.flyer {
+    position: absolute;
+    opacity: 1;
+    transform: translateX(0);
+    /* Centered */
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    z-index: 10;
+    height: 320px;
+    aspect-ratio: 9 / 20;
+    /* Roughly 720 / 1600 */
+    background-color: var(--mockup-bg);
+    border-radius: 16px;
+}
+
+/* Final layout: shift to right, visible */
+.flyer.drop-right {
+    opacity: 1;
+}
+
+/* .project-cards .flyer:nth-child(1) {
+    transform-origin: bottom center;
+    transform: rotate(-15deg);
+    z-index: 3;
+}
+
+.project-cards .flyer:nth-child(2) {
+    transform-origin: bottom center;
+    transform: rotate(15deg);
+    z-index: 2;
+}
+
+.project-cards .flyer:nth-child(3) {
+    transform-origin: bottom center;
+    transform: rotate(45deg);
+    z-index: 1;
+} */
+
+.flyer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+    display: block;
+}
+
+.project-info {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    color: var(--text-color);
+    font-weight: bold;
+    font-size: 1.2em;
 }
 
 
 
+
 /* WEB: 1920x1080 (landscape) aspect ratio */
+/* .web-projects {
+    background-color: var(--stat-card-bg-2);
+} */
+
 .web-projects .project-card {
     aspect-ratio: 16 / 9;
     height: 70vh;
@@ -329,7 +480,8 @@ body {
 
 /* Web fallback: 16 / 9 => 56.25% */
 .web-projects .aspect-ratio-box {
-    padding-top: 56.25%; /* 9 / 16 * 100 */
+    padding-top: 56.25%;
+    /* 9 / 16 * 100 */
 }
 
 /* Image fills the card */
@@ -627,13 +779,16 @@ body {
         opacity: 0;
         transform: translateY(-300px) scale(0.2);
     }
+
     60% {
         opacity: 1;
         transform: scale(1.05);
     }
+
     80% {
         transform: scale(0.98);
     }
+
     100% {
         transform: translateY(0) scale(1);
     }

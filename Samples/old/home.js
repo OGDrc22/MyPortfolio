@@ -192,3 +192,40 @@ const observerLink = new IntersectionObserver((entries) => {
 card_link.forEach(link => {
     observerLink.observe(link);
 });
+
+
+const observerGroup = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+        } else {
+            entry.target.classList.remove('show');
+        }
+    });
+}, {
+    threshold: 0.9, // Trigger when 50% of the element is visible
+});
+
+const projectGroups = document.querySelectorAll('.project-group');
+
+projectGroups.forEach(group => {
+  group.addEventListener('click', () => {
+    const flyers = group.querySelectorAll('.flyer');
+
+    flyers.forEach((flyer, index) => {
+      const flyerWidth = flyer.offsetWidth + 16;
+
+      setTimeout(() => {
+        if (!flyer.classList.contains('drop-right')) {
+          flyer.classList.add('drop-right');
+          flyer.style.transform = `translateX(${index * flyerWidth}px)`;
+          flyer.style.zIndex = 10 - index;
+        } else {
+          flyer.classList.remove('drop-right');
+          flyer.style.transform = `translateX(0px)`;
+          flyer.style.zIndex = 10 - index;
+        }
+      }, index * 100);
+    });
+  });
+});
