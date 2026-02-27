@@ -29,12 +29,18 @@ body {
     color: #050315;
 }
 
+.container-body.no-scroll {
+    overflow: hidden;
+    height: 100vh;
+}
+
 .container {
     margin: 0 auto;
     padding: 18px;
 }
 
 .top-nav {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -45,6 +51,18 @@ body {
     box-shadow: 0px 2px 4px hsla(0, 0, 0, 0.5);
     z-index: 1;
 }
+
+.top-nav-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--background-color);
+    z-index: -1;
+    mask: linear-gradient(black, transparent );
+    backdrop-filter: blur(10px);
+}   
 
 .top-nav-left {
     display: flex;
@@ -262,7 +280,7 @@ body {
     justify-content: center;
     align-items: center;
     gap: 16px;
-    margin-top: 16px;
+    margin: 16px;
 }
 
 .left-button,
@@ -276,6 +294,18 @@ body {
     border: none;
 }
 
+.left-button:hover,
+.right-button:hover {
+    background-color: var(--primary-color);
+    cursor: pointer;
+    transition: ease-out 0.2s;
+}
+
+.left-button,
+.right-button i{
+    color: var(--text-color);
+}
+
 .stats-title,
 .mobile-projects-title,
 .web-projects-title {
@@ -283,7 +313,8 @@ body {
 }
 
 .stats-container,
-.projects-container {
+.projects-container,
+.projects-container-modal {
     overflow-x: hidden;
     display: flex;
     flex-direction: row;
@@ -294,6 +325,10 @@ body {
     /* background-color: var(--primary-color); */
 }
 
+.d-none {
+    display: none;
+}
+
 .aspect-ratio-box {
     width: 100%;
     position: relative;
@@ -301,7 +336,11 @@ body {
 
 
 /* Base styles */
+<<<<<<< HEAD:Samples/old/home.css
 .project-card {
+=======
+.project-cards-web {
+>>>>>>> ac2c634e8e3ee8ae75247d89f637d276516e60df:home.css
     border-radius: 24px;
     /* overflow: hidden; */
     flex: 0 0 auto;
@@ -309,6 +348,10 @@ body {
     /* background-color: violet; */
     padding-left: 4px;
     position: relative;
+<<<<<<< HEAD:Samples/old/home.css
+=======
+    height: 100%;
+>>>>>>> ac2c634e8e3ee8ae75247d89f637d276516e60df:home.css
 }
 
 /* .mobile-projects {
@@ -326,7 +369,11 @@ body {
     border-radius: 24px;
 }
 
+<<<<<<< HEAD:Samples/old/home.css
 .project-card .buttons:nth-child(2) {
+=======
+.project-cards-web .buttons:nth-child(2) {
+>>>>>>> ac2c634e8e3ee8ae75247d89f637d276516e60df:home.css
     background-color: var(--mockup-bg);
     /* background-color: #F0DB4F; */
     position: absolute;
@@ -337,7 +384,11 @@ body {
     height: 72px;
 }
 
+<<<<<<< HEAD:Samples/old/home.css
 .project-card .buttons:nth-child(3) {
+=======
+.project-cards-web .buttons:nth-child(3) {
+>>>>>>> ac2c634e8e3ee8ae75247d89f637d276516e60df:home.css
     background-color: var(--mockup-bg);
     /* background-color: #F0DB4F; */
     position: absolute;
@@ -350,10 +401,17 @@ body {
 
 
 /* MOBILE: 720x1600 (portrait) aspect ratio */
+<<<<<<< HEAD:Samples/old/home.css
 .mobile-projects .project-card {
     aspect-ratio: 9 / 20;
     /* Roughly 720 / 1600 */
     height: 70vh;
+=======
+.mobile-projects .project-card-web {
+    aspect-ratio: 9 / 20;
+    /* Roughly 720 / 1600 */
+    /* height: 70vh; */
+>>>>>>> ac2c634e8e3ee8ae75247d89f637d276516e60df:home.css
     /* Height-controlled; width will follow from aspect-ratio */
 }
 
@@ -364,6 +422,7 @@ body {
     /* padding-top: 177.78%; */
     background-color: whitesmoke;
     border-radius: 16px;
+<<<<<<< HEAD:Samples/old/home.css
 }
 
 
@@ -482,10 +541,88 @@ body {
 .web-projects .aspect-ratio-box {
     padding-top: 56.25%;
     /* 9 / 16 * 100 */
+=======
 }
 
-/* Image fills the card */
-.project-card img {
+
+.project-group {
+  /* background-color: lightgreen; */
+  /* height: 70vh; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 32px 32px;
+  width: 100%;
+  position: relative;
+}
+
+
+.project-cards-mobile {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: rebeccapurple; */
+    aspect-ratio: 9 / 20;
+    height: 100%;
+    flex-direction: row;
+    gap: 16px;
+    transition: width 0.4s ease;
+>>>>>>> ac2c634e8e3ee8ae75247d89f637d276516e60df:home.css
+}
+
+.flyer {
+    position: absolute;
+}
+
+.flyer-flex {
+    position: relative;
+    gap: 16px;
+    height: 320px;
+    aspect-ratio: 9 / 20;
+    /* Roughly 720 / 1600 */
+    background-color: var(--mockup-bg);
+    border-radius: 16px;
+}
+
+.flyer {
+    position: absolute;
+    opacity: 1;
+    transform: translateX(0);
+    /* Centered */
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    z-index: 10;
+    height: 100%;
+    aspect-ratio: 9 / 20;
+    /* Roughly 720 / 1600 */
+    background-color: var(--mockup-bg);
+    border-radius: 16px;
+}
+
+/* Final layout: shift to right, visible */
+.flyer.drop-right {
+    opacity: 1;
+}
+
+/* .project-cards-mobile .flyer:nth-child(1) {
+    transform-origin: bottom center;
+    transform: rotate(-15deg);
+    z-index: 3;
+}
+
+.project-cards-mobile .flyer:nth-child(2) {
+    transform-origin: bottom center;
+    transform: rotate(15deg);
+    z-index: 2;
+}
+
+.project-cards-mobile .flyer:nth-child(3) {
+    transform-origin: bottom center;
+    transform: rotate(45deg);
+    z-index: 1;
+} */
+
+.flyer img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -493,14 +630,68 @@ body {
     display: block;
 }
 
-/* Actual image or content inside */
-.aspect-ratio-box img {
+.project-info {
+    position: absolute;
+    bottom: 0px;
+    color: var(--text-color);
+    font-weight: bold;
+    font-size: 1.2em;
+    z-index: 10;
+}
+
+.project-info .project-info-bg {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    mask: linear-gradient(transparent, black, black );
+    backdrop-filter: blur(10px);
+    z-index: -1;
+
+}
+
+
+
+/* WEB: 1920x1080 (landscape) aspect ratio */
+/* .web-projects {
+    background-color: var(--stat-card-bg-2);
+} */
+
+.web-expanded  {
+    aspect-ratio: 16 / 9;
+    height: 100%;
+}
+.web-projects .project-cards-web {
+    aspect-ratio: 16 / 9;
+}
+
+/* Web fallback: 16 / 9 => 56.25% */
+/* .web-projects .aspect-ratio-box {
+    padding-top: 56.25%;
+9 / 16 * 100 
+} */
+
+/* Image fills the card */
+.project-cards-web img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    border-radius: 16px;
+    display: block;
+    background-color: #007396;
+}
+
+/* Actual image or content inside */
+.aspect-ratio-box img {
+    /* position: absolute; */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
 }
 
 
@@ -508,18 +699,19 @@ body {
     overflow: hidden;
 }
 
-.projects-container {
+.projects-container,
+.projects-container-modal {
     opacity: 0;
     transform: translateX(200px);
     transition: transform 0.6s ease, opacity 0.6s ease;
+    height: 100%;
 }
 
-.projects-container.reveal {
+.projects-container.reveal,
+.projects-container-modal.reveal {
     opacity: 1;
     transform: translateX(0);
 }
-
-
 
 .stat-card {
     background-color: var(--stat-card-bg-1);
@@ -792,4 +984,106 @@ body {
     100% {
         transform: translateY(0) scale(1);
     }
+}
+
+
+
+#myImg {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 16px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%;
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(15px);
+}
+
+/* Modal Content (image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+.modal .hScrollModule {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 5% 0px 5%;
+    height: 100%;
+}
+
+.modal .mobile-projects .projects-container {
+    /* opacity: 0; */
+    height: auto;
+}
+
+
+/* Caption of Modal Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Add Animation */
+.modal-content, #caption {  
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+  from {-webkit-transform:scale(0)} 
+  to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+  from {transform:scale(0)} 
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
 }
